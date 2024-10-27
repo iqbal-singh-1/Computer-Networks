@@ -50,12 +50,25 @@
 - IP finding can be very useful for an organisation.
 - Here are some tricks to find an IP address.
 
-1. **Using DNS** 
+  **Using DNS** 
   - DNS of a company can be dissolved to gather information about different servers the company is using.
   - To get this info, we can use two commands :- `host` or `dig`.
   - Host command is used to send a DNS query to the DNS server and corresponding info is delivered to the user.
   - Ex:- `host -t ns target.com` , here, -t is used to specify the type of record we are searching for, which in this case is "name server" (ns).
   - Dig command shows more detailed info about the target.
+  
+- Here are some nmap flags that can be used to handle DNS queries:-
+  1. `-n`:- this flag tells nmap to skip reverse DNS resolution and do a normal scan.
+  2. `-R`:- this flag tells nmap to always do a reverse DNS in contrat with normal nmap scan which do the rDNS only for active hosts.
+  3. `--system-dns`:- this flag uses system's dns resolver to carry out the dns scan rather than using nmap's default dns resolver.
+  4. `--dns-servers`:- this flag is used to switch dns servers by specifying custom dns servers.
 
-2. **Routing**
-  - Routing protocols like BGP can be used to get the routing tables which can provide a lot of info like packet path, IP of sender and reciever
+## Controlling nmap host discovery scans
+
+- There are many flags that we can use:-
+  1. `-SL`:- this one simply lists all the target hosts that we are scanning just to confirm what we are trying to scan.
+  2. `-sn`:- this flag tells the nmap to disable port scan which means that only ping scan is performed.
+  3. `-Pn`:- this flag is used to disable ping scan.
+  4. `-PE`:- stands for ping only scan. This scan is rarely used because ping scans are blocked by even the basic firewalls.
+  5. `-PS`:- scan the list of ports specified for the host we are scanning. Ex:- PS80, PS22,etc.
+  6. 
